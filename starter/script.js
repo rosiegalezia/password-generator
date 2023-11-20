@@ -91,14 +91,16 @@ var upperCasedCharacters = [
 // Function to prompt user for password options
 function getpasswordOptions() {
 
-    // // store value of each input in an object - INITIALISE THE OBJECT
-    let passwordCriteria = {
-      // numberOfCharacters: "",
-      // lowercase: true,
-      // uppercase: true,
-      // numbers: true,
-      // specialchars: true,
-    };
+  let passwordCriteria ={};
+
+    // // // store value of each input in an object - INITIALISE THE OBJECT
+    // let passwordCriteria = {
+    //   numberOfCharacters: "",
+    //   lowercase: true,
+    //   uppercase: true,
+    //   numbers: true,
+    //   specialchars: true,
+    // };
 
   // window.prompt to check no. characters
   let numberOfCharacters = Number(window.prompt("How many characters would you like your password to be?"));
@@ -137,6 +139,8 @@ function getpasswordOptions() {
   }
 
   // return password criteria object?
+  return(passwordCriteria);
+
 }
 
 getpasswordOptions();
@@ -144,40 +148,44 @@ getpasswordOptions();
 // Function to generate password with user input
 
 function generatePassword() {
+  var passwordOptions = getpasswordOptions();
 
   // retrieve password criteria that were returned (call the function)
 
   // use array.prototype.concat() to make one giant array from the criteria the user has chosen:
   var potentialCharacters=[];
+  console.log(potentialCharacters);
+  
 
   // if user chose lowercase, concatenate the lowercase chars array onto potential chars array
-if (getpasswordOptions.lowercase===true) {
+// if (passwordOptions.lowercase===true) {
     var potentialCharacters = potentialCharacters.concat(lowerCasedCharacters);
+    console.log(potentialCharacters);
+  // }
+
+  // // if user chose uppercase, concatenate the uppercase chars array onto potential chars array
+  if (passwordOptions.uppercase===true){
+    var potentialCharacters = potentialCharacters.concat(upperCasedCharacters);
     console.log(potentialCharacters);
   }
 
-  // // if user chose uppercase, concatenate the uppercase chars array onto potential chars array
-  // if (passwordOptions.uppercase===true){
-    var potentialCharacters = potentialCharacters.concat(upperCasedCharacters);
-    console.log(potentialCharacters);
-  // }
-
   // // if user chose numeric, concatenate the numeric chars array onto potential chars array
-  // if (passwordOptions.numbers===true){
+  if (passwordOptions.numbers===true){
     var potentialCharacters = potentialCharacters.concat(numericCharacters);
     console.log(potentialCharacters);
-  // }
+  }
 
   // // if user chose special chars, concatenate the special chars array onto potential chars array
-  // if (passwordOptions.specialchars===true){
+  if (passwordOptions.specialchars===true){
     var potentialCharacters = potentialCharacters.concat(specialCharacters);
     console.log(potentialCharacters);
-  // }
+  }
+
 
   // at this point, potential chars is a large array of all potential chars that can go into users password
 }
 
-generatePassword();
+// generatePassword();
 
 // Function for getting a random element from an array
 function getRandom(arr) {
