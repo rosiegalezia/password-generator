@@ -155,10 +155,28 @@ var potential=[];
 
 function potentialCharacters(){
     // if user chose lowercase, concatenate the lowercase chars array onto potential chars array
-  if (passwordCriteria.uppercase===true){
+  if (passwordCriteria.lowercase===true){
     potential=potential.concat(lowerCasedCharacters);
     console.log(potential);
   }
+    // if user chose uppercase, concatenate the uppercase chars array onto potential chars array
+  if (passwordCriteria.uppercase===true){
+    potential=potential.concat(upperCasedCharacters);
+    console.log(potential);
+  }
+    
+    // if user chose numbers, concatenate the numbers chars array onto potential chars array
+  if (passwordCriteria.numbers===true){
+    potential=potential.concat(numericCharacters);
+    console.log(potential);
+  }
+
+    // if user chose special chars, concatenate the special chars array onto potential chars array
+ if (passwordCriteria.specialchars===true){
+    potential=potential.concat(specialCharacters);
+    console.log(potential);
+  }
+
 }
 
 potentialCharacters();
