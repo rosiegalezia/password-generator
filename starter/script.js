@@ -156,33 +156,43 @@ var potential=[];
 function potentialCharacters(){
     // if user chose lowercase, concatenate the lowercase chars array onto potential chars array
   if (passwordCriteria.lowercase===true){
-    potential=potential.concat(lowerCasedCharacters);
-    console.log(potential);
-  }
+    var potential=potential.concat(lowerCasedCharacters);
+  } 
+
     // if user chose uppercase, concatenate the uppercase chars array onto potential chars array
   if (passwordCriteria.uppercase===true){
-    potential=potential.concat(upperCasedCharacters);
-    console.log(potential);
+    var potential=potential.concat(upperCasedCharacters);
   }
     
     // if user chose numbers, concatenate the numbers chars array onto potential chars array
   if (passwordCriteria.numbers===true){
-    potential=potential.concat(numericCharacters);
-    console.log(potential);
+    var potential=potential.concat(numericCharacters);
   }
 
     // if user chose special chars, concatenate the special chars array onto potential chars array
- if (passwordCriteria.specialchars===true){
-    potential=potential.concat(specialCharacters);
-    console.log(potential);
+  if (passwordCriteria.specialchars===true){
+    var potential=potential.concat(specialCharacters);
   }
-
+  
+  console.log(potential);
 }
 
 potentialCharacters();
 
 function getRandom(arr) {
  // generate random number to represent array index
+
+ for (var i = 0; i < numberOfCharacters; i++) {
+
+     // get random index value
+     const randomIndex = Math.floor(Math.random() * potential.length);
+
+     // get random item
+     const item = arr[randomIndex];
+ 
+     // concatenate item with other characters in password
+     return item;
+ }
 
 }
 
