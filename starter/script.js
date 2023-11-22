@@ -147,65 +147,68 @@ getPasswordOptions();
 
 // Function to generate password with user input
 
-function generatePassword() {}
+function generatePassword() {
 
-// Function for getting a random element from an array
-
-var potential=[];
-
-function potentialCharacters(){
-    // if user chose lowercase, concatenate the lowercase chars array onto potential chars array
-  if (passwordCriteria.lowercase===true){
-    var potential=potential.concat(lowerCasedCharacters);
-  } 
-
-    // if user chose uppercase, concatenate the uppercase chars array onto potential chars array
-  if (passwordCriteria.uppercase===true){
-    var potential=potential.concat(upperCasedCharacters);
-  }
+  function potentialCharacters(){
     
-    // if user chose numbers, concatenate the numbers chars array onto potential chars array
-  if (passwordCriteria.numbers===true){
-    var potential=potential.concat(numericCharacters);
+  var potential=[];
+
+      // if user choses lowercase, concatenate the lowercase chars array onto potential chars array
+    if (passwordCriteria.lowercase===true){
+      var potential=potential.concat(lowerCasedCharacters);
+    } 
+
+      // if user choses uppercase, concatenate the uppercase chars array onto potential chars array
+    if (passwordCriteria.uppercase===true){
+      var potential=potential.concat(upperCasedCharacters);
+    }
+      
+      // if user choses numbers, concatenate the numbers chars array onto potential chars array
+    if (passwordCriteria.numbers===true){
+      var potential=potential.concat(numericCharacters);
+    }
+
+      // if user choses special chars, concatenate the special chars array onto potential chars array
+    if (passwordCriteria.specialchars===true){
+      var potential=potential.concat(specialCharacters);
+    }
+    
+    console.log(potential);
   }
 
-    // if user chose special chars, concatenate the special chars array onto potential chars array
-  if (passwordCriteria.specialchars===true){
-    var potential=potential.concat(specialCharacters);
-  }
+  // Function for getting a random element from an array
+  function getRandom(arr) {
   
-  console.log(potential);
-}
+  for (var i = 0; i < passwordCriteria.numberOfCharacters; i++) {
 
-potentialCharacters();
+      // generate random number to represent array index
+      const randomIndex = Math.floor(Math.random() * potential.length);
 
-function getRandom(arr) {
- // generate random number to represent array index
+      // get random item
+      const item = arr[randomIndex];
+  
+      // concatenate item with other characters in password
+      console.log(item)
+  }
 
- for (var i = 0; i < numberOfCharacters; i++) {
+  }
 
-     // get random index value
-     const randomIndex = Math.floor(Math.random() * potential.length);
-
-     // get random item
-     const item = arr[randomIndex];
- 
-     // concatenate item with other characters in password
-     return item;
- }
+  getRandom();
 
 }
 
-// Get references to the #generate element
-var generateBtn = document.querySelector('#generate');
+generatePassword();
 
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector('#password');
+// // Get references to the #generate element
+// var generateBtn = document.querySelector('#generate');
 
-  passwordText.value = password;
-}
+// // Write password to the #password input
+// function writePassword() {
+//   var password = generatePassword();
+//   var passwordText = document.querySelector('#password');
 
-// Add event listener to generate button
-generateBtn.addEventListener('click', writePassword);
+//   passwordText.value = password;
+// }
+
+// // Add event listener to generate button
+// generateBtn.addEventListener('click', writePassword);
