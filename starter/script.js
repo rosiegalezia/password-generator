@@ -149,32 +149,31 @@ getPasswordOptions();
 
 function generatePassword() {
 
-  function potentialCharacters(){
-    
+  // creates an array of potential characters based on user inputs
   var potential=[];
 
       // if user choses lowercase, concatenate the lowercase chars array onto potential chars array
+
     if (passwordCriteria.lowercase===true){
       var potential=potential.concat(lowerCasedCharacters);
-    } 
+    } else
 
       // if user choses uppercase, concatenate the uppercase chars array onto potential chars array
     if (passwordCriteria.uppercase===true){
       var potential=potential.concat(upperCasedCharacters);
-    }
+    } else
       
       // if user choses numbers, concatenate the numbers chars array onto potential chars array
     if (passwordCriteria.numbers===true){
       var potential=potential.concat(numericCharacters);
-    }
+    } else
 
       // if user choses special chars, concatenate the special chars array onto potential chars array
     if (passwordCriteria.specialchars===true){
       var potential=potential.concat(specialCharacters);
     }
-    
-    console.log(potential);
-  }
+  
+    console.log(potential)
 
   // Function for getting a random element from an array
   function getRandom(arr) {
