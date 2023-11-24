@@ -1,6 +1,9 @@
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
 
+// global variable to ensure at least one of each of the character types is included in password
+var guaranteedCharacters = [];
+
 // Array of special characters to be included in password
 var specialCharacters = [
   '@',
@@ -173,74 +176,62 @@ function generatePassword() {
 
     if (passwordCriteria.lowercase){
       potential = potential.concat(lowerCasedCharacters);
-      // console.log(potential)
-    }
+      // include a guaranteed lowercase character
+      getRandom(lowerCasedCharacters)
+    } 
 
       // if user choses uppercase, concatenate the uppercase chars array onto potential chars array
     if (passwordCriteria.uppercase){
       potential = potential.concat(upperCasedCharacters);
-      // console.log(potential)
+      getRandom(upperCasedCharacters)
     }
       
       // if user choses numbers, concatenate the numbers chars array onto potential chars array
     if (passwordCriteria.numbers){
       potential = potential.concat(numericCharacters);
-      // console.log(potential)
+      getRandom(numericCharacters)
     }
 
       // if user choses special chars, concatenate the special chars array onto potential chars array
     if (passwordCriteria.specialchars){
       potential = potential.concat(specialCharacters);
-      // console.log(potential)
+      getRandom(specialCharacters)
     }
     console.log(potential)
+
+    // check that the number of remaining characters is calculated correctly
+    console.log(numberOfCharacters-guaranteedCharacters.length)
+    var passwordLength = numberOfCharacters-guaranteedCharacters.length
+
+    console.log(passwordLength)
+
+    // randomly generate the remaining characters
+    for (var i = 0; i < passwordLength; i++) {
+      getRandom(potential)
+    }
+    console.log(guaranteedCharacters)
+    console.log(guaranteedCharacters.length)
+    return guaranteedCharacters
 }
-
-
 
 // Function for getting a random element from an array
-function getRandom(length) {
+function getRandom(array) {
 
-  let password = ''
   let randomchar = ''
-  for (var i = 0; i < passwordCriteria.numberOfCharacters; i++) {
+
     // generate random number to represent array index
-    const randomIndex = Math.floor(Math.random() * generatePassword.potential.length);
+    const randomIndex = Math.floor(Math.random() * array.length);
+  console.log(randomIndex)
 
     // get random item
-    const randomchar = potential[arr]
+    randomchar = array[randomIndex]
+    console.log(randomchar)
     
-    // may be useful: https://www.programiz.com/javascript/examples/generate-random-strings
-    // password += `${arr[i]}` ASK TUTOR WHAT THIS DOES
-
-    // concatenate item with other characters in password
-    // console.log(password(passwordCriteria.numberOfCharacters))
-}
-
-// console.log(getRandom(passwordCriteria.numberOfCharacters))
-
-// program to generate random strings
-
-// declare all characters
-// const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-// function generateString(length) {
-//     let result = ' ';
-//     const charactersLength = characters.length;
-//     for ( let i = 0; i < length; i++ ) {
-//         result += characters.charAt(Math.floor(Math.random() * charactersLength));
-//     }
-
-//     return result;
-// }
-
-var passwordlength = passwordCriteria.numberOfCharacters
-
-console.log(generatePassword(passwordlength));
+// adds character to the password string
+ guaranteedCharacters = guaranteedCharacters + randomchar
+console.log(guaranteedCharacters)
 
 }
-
-getRandom();
 
 
 // Write password to the #password input
@@ -253,3 +244,7 @@ function writePassword() {
 
 // Add event listener to generate button (trigger function listening out for, function to be executed)
 generateBtn.addEventListener('click', writePassword);
+
+
+
+    // may be useful: https://www.programiz.com/javascript/examples/generate-random-strings
