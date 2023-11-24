@@ -1,3 +1,6 @@
+// Get references to the #generate element
+var generateBtn = document.querySelector('#generate');
+
 // Array of special characters to be included in password
 var specialCharacters = [
   '@',
@@ -88,6 +91,18 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+
+
+// Function to prompt user for password options
+// function getPasswordOptions() {
+
+// }
+// getPasswordOptions();
+
+// Function to generate password with user input
+
+function generatePassword() {
+
     // store value of each input in an object
     var passwordCriteria = {
       numberOfCharacters: "",
@@ -95,16 +110,16 @@ var upperCasedCharacters = [
       uppercase: true,
       numbers: true,
       specialchars: true,
-    }
+    } // could put this object inside function
 
-// Function to prompt user for password options
-function getPasswordOptions() {
+    // lowercase.option to initialise functions and prompt to get user input??
 
-    // store value of each input in an object
-    var passwordCriteria = {}
 
   // window.prompt to check no. characters
   let numberOfCharacters= Number(window.prompt("How many characters would you like your password to be?"));
+  
+  // could combine 8-128 range!!!!!!!!!!!!!
+
   // if no<8, return error message
   if (numberOfCharacters<8){
     window.prompt("Password must be at least 8 characters long. Please try again")
@@ -114,6 +129,10 @@ function getPasswordOptions() {
   if (numberOfCharacters>128){
     window.prompt("Password cannot be longer than 128 characters long. Please try again")
   }
+
+// solution for if they enter something other than a number
+// if numberOfCharacters=== not a number > google this to work out what to do
+
   passwordCriteria.numberOfCharacters = numberOfCharacters;
   // console.log(passwordCriteria)
 
@@ -142,94 +161,95 @@ function getPasswordOptions() {
   }
 
   // return password criteria object
-}
-getPasswordOptions();
 
-// Function to generate password with user input
 
-function generatePassword() {
+
 
   // creates an array of potential characters based on user inputs
-  var potential=[];
+  var potential = [];
+  // console.log(potential)
 
       // if user choses lowercase, concatenate the lowercase chars array onto potential chars array
 
-    if (passwordCriteria.lowercase===true){
-      var potential=potential.concat(lowerCasedCharacters);
-    } else
+    if (passwordCriteria.lowercase){
+      potential = potential.concat(lowerCasedCharacters);
+      // console.log(potential)
+    }
 
       // if user choses uppercase, concatenate the uppercase chars array onto potential chars array
-    if (passwordCriteria.uppercase===true){
-      var potential=potential.concat(upperCasedCharacters);
-    } else
+    if (passwordCriteria.uppercase){
+      potential = potential.concat(upperCasedCharacters);
+      // console.log(potential)
+    }
       
       // if user choses numbers, concatenate the numbers chars array onto potential chars array
-    if (passwordCriteria.numbers===true){
-      var potential=potential.concat(numericCharacters);
-    } else
+    if (passwordCriteria.numbers){
+      potential = potential.concat(numericCharacters);
+      // console.log(potential)
+    }
 
       // if user choses special chars, concatenate the special chars array onto potential chars array
-    if (passwordCriteria.specialchars===true){
-      var potential=potential.concat(specialCharacters);
+    if (passwordCriteria.specialchars){
+      potential = potential.concat(specialCharacters);
+      // console.log(potential)
     }
-  
     console.log(potential)
+}
 
-  // Function for getting a random element from an array
-  function getRandom(arr) {
 
-    let password = ''
+
+// Function for getting a random element from an array
+function getRandom(length) {
+
+  let password = ''
+  let randomchar = ''
   for (var i = 0; i < passwordCriteria.numberOfCharacters; i++) {
+    // generate random number to represent array index
+    const randomIndex = Math.floor(Math.random() * generatePassword.potential.length);
 
-      // generate random number to represent array index
-      const randomIndex = Math.floor(Math.random() * potential.length);
+    // get random item
+    const randomchar = potential[arr]
+    
+    // may be useful: https://www.programiz.com/javascript/examples/generate-random-strings
+    // password += `${arr[i]}` ASK TUTOR WHAT THIS DOES
 
-      // get random item
-      const item = potential[randomIndex];
+    // concatenate item with other characters in password
+    // console.log(password(passwordCriteria.numberOfCharacters))
+}
 
-      // may be useful: https://www.programiz.com/javascript/examples/generate-random-strings
-      // password += `${arr[i]}`
-
-
-      // concatenate item with other characters in password
-      console.log(item)
-  }
+// console.log(getRandom(passwordCriteria.numberOfCharacters))
 
 // program to generate random strings
 
 // declare all characters
-const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+// const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-function generateString(length) {
-    let result = ' ';
-    const charactersLength = characters.length;
-    for ( let i = 0; i < length; i++ ) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
+// function generateString(length) {
+//     let result = ' ';
+//     const charactersLength = characters.length;
+//     for ( let i = 0; i < length; i++ ) {
+//         result += characters.charAt(Math.floor(Math.random() * charactersLength));
+//     }
 
-    return result;
-}
-
-console.log(generateString(5));
-
-  }
-
-  getRandom();
-
-}
-
-generatePassword();
-
-// // Get references to the #generate element
-// var generateBtn = document.querySelector('#generate');
-
-// // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector('#password');
-
-//   passwordText.value = password;
+//     return result;
 // }
 
-// // Add event listener to generate button
-// generateBtn.addEventListener('click', writePassword);
+var passwordlength = passwordCriteria.numberOfCharacters
+
+console.log(generatePassword(passwordlength));
+
+}
+
+getRandom();
+
+
+// Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector('#password');
+
+  passwordText.value = password;
+}
+
+// Add event listener to generate button (trigger function listening out for, function to be executed)
+generateBtn.addEventListener('click', writePassword);
