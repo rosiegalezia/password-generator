@@ -94,16 +94,7 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-
-
-// Function to prompt user for password options
-// function getPasswordOptions() {
-
-// }
-// getPasswordOptions();
-
-// Function to generate password with user input
-
+// Function to generate password based on user input
 function generatePassword() {
 
     // store value of each input in an object
@@ -113,45 +104,34 @@ function generatePassword() {
       uppercase: true,
       numbers: true,
       specialchars: true,
-    } // could put this object inside function
+    } 
 
-    // lowercase.option to initialise functions and prompt to get user input??
-
-
-  // window.prompt to check no. characters
+  // window.prompt to check desired no. characters
   let numberOfCharacters= Number(window.prompt("How many characters would you like your password to be?"));
-  
-  // could combine 8-128 range!!!!!!!!!!!!!
 
-  // if no<8, return error message
-  if (numberOfCharacters<8){
-    window.prompt("Password must be at least 8 characters long. Please try again")
-  }
-
-  // if no>128, return error message (while loop)
-  if (numberOfCharacters>128){
-    window.prompt("Password cannot be longer than 128 characters long. Please try again")
+  // if no<8 or >128, return error message
+  if (numberOfCharacters<8 || numberOfCharacters>128){
+    window.prompt("Password must be btween 8 and 128 characters long. Please try again")
   }
 
 // solution for if they enter something other than a number
 // if numberOfCharacters=== not a number > google this to work out what to do
 
   passwordCriteria.numberOfCharacters = numberOfCharacters;
-  // console.log(passwordCriteria)
 
-  // confirm(select okay to include lowercase letters)
+  // confirm statement to get user input for lowercase characters
   let lowercase = confirm("Select OK to include lowercase letters in your password")
   passwordCriteria.lowercase = lowercase;
   
-  // confirm(select okay to include uppercase letters)
+  // confirm statement to get user input for uppercase characters
   let uppercase = confirm("Select OK to include uppercase letters in your password")
   passwordCriteria.uppercase = uppercase;
 
-  // confirm(select okay to include numbers)
+  // confirm statement to get user input for numeric characters
   let numbers = confirm("Select OK to include numbers in your password")
   passwordCriteria.numbers = numbers;
 
-  // confirm(select okay to include special characters)
+  // confirm statement to get user input for special characters
   let specialchars = confirm("Select OK to include special characters in your password")
   passwordCriteria.specialchars = specialchars;
 
@@ -163,76 +143,76 @@ function generatePassword() {
     alert("You must select at least one character type. Please try again")
   }
 
-  // return password criteria object
-
-
-
-
   // creates an array of potential characters based on user inputs
   var potential = [];
-  // console.log(potential)
-
-      // if user choses lowercase, concatenate the lowercase chars array onto potential chars array
 
     if (passwordCriteria.lowercase){
+      // add the lowercase array to the array of potential characters if user selects this
       potential = potential.concat(lowerCasedCharacters);
-      // include a guaranteed lowercase character
+
+      // run the get random function to guarantee a lowercase character
       getRandom(lowerCasedCharacters)
     } 
 
-      // if user choses uppercase, concatenate the uppercase chars array onto potential chars array
     if (passwordCriteria.uppercase){
+      // add the uppercase array to the array of potential characters if user selects this
       potential = potential.concat(upperCasedCharacters);
+
+      // run the get random function to guarantee an uppercase character
       getRandom(upperCasedCharacters)
     }
       
-      // if user choses numbers, concatenate the numbers chars array onto potential chars array
     if (passwordCriteria.numbers){
+      // add the numeric array to the array of potential characters if user selects this
       potential = potential.concat(numericCharacters);
+
+      // run the get random function to guarantee a numeric character
       getRandom(numericCharacters)
     }
 
-      // if user choses special chars, concatenate the special chars array onto potential chars array
     if (passwordCriteria.specialchars){
+      // add the special characters array to the array of potential characters if user selects this
       potential = potential.concat(specialCharacters);
+
+      // run the get random function to guarantee a special character
       getRandom(specialCharacters)
     }
+
+    // display the array of potential characters based on user inputs in console
     console.log(potential)
 
     // check that the number of remaining characters is calculated correctly
     console.log(numberOfCharacters-guaranteedCharacters.length)
     var passwordLength = numberOfCharacters-guaranteedCharacters.length
 
-    console.log(passwordLength)
 
-    // randomly generate the remaining characters
+    // randomly generate the remaining characters until password length matches that requested by user
     for (var i = 0; i < passwordLength; i++) {
+      // run the get random function on the 'potential' array
       getRandom(potential)
     }
-    console.log(guaranteedCharacters)
-    console.log(guaranteedCharacters.length)
+
     return guaranteedCharacters
 }
 
-// Function for getting a random element from an array
+// Function for getting a random element from an array (relevant array can be specified later)
 function getRandom(array) {
 
+  // initalise random character variable
   let randomchar = ''
 
     // generate random number to represent array index
     const randomIndex = Math.floor(Math.random() * array.length);
-  console.log(randomIndex)
 
-    // get random item
+    // get random item from the assigned array
     randomchar = array[randomIndex]
-    console.log(randomchar)
     
 // adds character to the password string
  guaranteedCharacters = guaranteedCharacters + randomchar
+
+ // displays password string in console
 console.log(guaranteedCharacters)
-
 }
-
 
 // Write password to the #password input
 function writePassword() {
@@ -244,7 +224,3 @@ function writePassword() {
 
 // Add event listener to generate button (trigger function listening out for, function to be executed)
 generateBtn.addEventListener('click', writePassword);
-
-
-
-    // may be useful: https://www.programiz.com/javascript/examples/generate-random-strings
