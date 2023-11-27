@@ -106,18 +106,23 @@ function generatePassword() {
       specialchars: true,
     } 
 
-  // window.prompt to check desired no. characters
+  // window.prompt to check desired no. of characters
   let numberOfCharacters= Number(window.prompt("How many characters would you like your password to be?"));
 
   // if no<8 or >128, return error message
   if (numberOfCharacters<8 || numberOfCharacters>128){
-    window.prompt("Password must be btween 8 and 128 characters long. Please try again")
+    window.prompt("Password must be between 8 and 128 characters long. Please try again")
   }
 
-// solution for if they enter something other than a number
+  // solution for if they enter something other than a number
+  if (isNaN(numberOfCharacters)) {
+    window.prompt("Please enter a numberic value between 8 and 128")
+  }
 // if numberOfCharacters=== not a number > google this to work out what to do
 
   passwordCriteria.numberOfCharacters = numberOfCharacters;
+
+  // if (8<numberOfCharacters<128) && (isNaN(numberOfCharacters)===false)
 
   // confirm statement to get user input for lowercase characters
   let lowercase = confirm("Select OK to include lowercase letters in your password")
