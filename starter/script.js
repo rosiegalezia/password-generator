@@ -141,6 +141,7 @@ function generatePassword() {
   passwordCriteria.specialchars = specialchars;
 
   // display final criteria
+  console.log('User criteria for password: ')
   console.log(passwordCriteria)
 
   //if none of the above are true, return error message
@@ -185,21 +186,21 @@ function generatePassword() {
       getRandom(specialCharacters)
     }
 
-    // display the array of potential characters based on user inputs in console
-    console.log(potential)
-
     // check that the number of remaining characters is calculated correctly
+    console.log("number of remaining characters to be generated from 'potential' array: ")
     console.log(numberOfCharacters-guaranteedCharacters.length)
-    var passwordLength = numberOfCharacters-guaranteedCharacters.length
 
+    // define a new variable for the number of remaining characters
+    var passwordLength = numberOfCharacters-guaranteedCharacters.length
 
     // randomly generate the remaining characters until password length matches that requested by user
     for (var i = 0; i < passwordLength; i++) {
+
       // run the get random function on the 'potential' array
       getRandom(potential)
     }
     
-    // return the password in the allocated box
+    // return the final password
     return guaranteedCharacters
 
   } else generatePassword()
