@@ -97,7 +97,7 @@ var upperCasedCharacters = [
 // Function to generate password based on user input
 function generatePassword() {
 
-    // store value of each input in an object
+    // store value of each input in 'passwordCriteria' object
     var passwordCriteria = {
       numberOfCharacters: "",
       lowercase: true,
@@ -114,17 +114,15 @@ function generatePassword() {
     window.prompt("Password must be between 8 and 128 characters long. Please try again")
   }
 
-  // solution for if they enter something other than a number
+  // return message if user enters something other than a number
   if (isNaN(numberOfCharacters)) {
     window.prompt("Please enter a numberic value between 8 and 128")
   }
 
   passwordCriteria.numberOfCharacters = numberOfCharacters;
 
-
-  // only proceed if the user inputs a number between 8 and 128
-
-  if (8<numberOfCharacters<128 && isNaN(numberOfCharacters)===false){
+  // only proceed if the user inputs a number between 8 and 128, else go back to the initial character number prompt
+  if (7<numberOfCharacters && numberOfCharacters<129 && isNaN(numberOfCharacters)===false){
 
   // confirm statement to get user input for lowercase characters
   let lowercase = confirm("Select OK to include lowercase letters in your password")
@@ -142,14 +140,15 @@ function generatePassword() {
   let specialchars = confirm("Select OK to include special characters in your password")
   passwordCriteria.specialchars = specialchars;
 
-  //display final criteria
+  // display final criteria
   console.log(passwordCriteria)
 
   //if none of the above are true, return error message
   if (lowercase === false && uppercase === false && numbers === false && specialchars === false) {
     alert("You must select at least one character type. Please try again")
+    // go back to the start of the function if user selects false for each character type
+    generatePassword()
   }
-
 
   // creates an array of potential characters based on user inputs
   var potential = [];
@@ -199,8 +198,10 @@ function generatePassword() {
       // run the get random function on the 'potential' array
       getRandom(potential)
     }
-
+    
+    // return the password in the allocated box
     return guaranteedCharacters
+
   } else generatePassword()
 }
 
