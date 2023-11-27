@@ -118,11 +118,13 @@ function generatePassword() {
   if (isNaN(numberOfCharacters)) {
     window.prompt("Please enter a numberic value between 8 and 128")
   }
-// if numberOfCharacters=== not a number > google this to work out what to do
 
   passwordCriteria.numberOfCharacters = numberOfCharacters;
 
-  // if (8<numberOfCharacters<128) && (isNaN(numberOfCharacters)===false)
+
+  // only proceed if the user inputs a number between 8 and 128
+
+  if (8<numberOfCharacters<128 && isNaN(numberOfCharacters)===false){
 
   // confirm statement to get user input for lowercase characters
   let lowercase = confirm("Select OK to include lowercase letters in your password")
@@ -147,6 +149,7 @@ function generatePassword() {
   if (lowercase === false && uppercase === false && numbers === false && specialchars === false) {
     alert("You must select at least one character type. Please try again")
   }
+
 
   // creates an array of potential characters based on user inputs
   var potential = [];
@@ -198,6 +201,7 @@ function generatePassword() {
     }
 
     return guaranteedCharacters
+  } else generatePassword()
 }
 
 // Function for getting a random element from an array (relevant array can be specified later)
