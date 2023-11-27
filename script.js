@@ -1,6 +1,11 @@
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
 
+// Refresh the page to clear the password every time button is clicked
+const refreshPage = () => {
+  location.reload();
+}
+
 // global variable to ensure at least one of each of the character types is included in password
 var guaranteedCharacters = [];
 
@@ -203,7 +208,8 @@ function generatePassword() {
     // return the final password
     return guaranteedCharacters
 
-  } else generatePassword()
+    
+  } else {generatePassword()}
 }
 
 // Function for getting a random element from an array (relevant array can be specified later)
@@ -223,15 +229,16 @@ function getRandom(array) {
 
  // displays password string in console
 console.log(guaranteedCharacters)
+
 }
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
-
   passwordText.value = password;
 }
 
 // Add event listener to generate button (trigger function listening out for, function to be executed)
 generateBtn.addEventListener('click', writePassword);
+generateBtn.addEventListener('click', refreshPage);
